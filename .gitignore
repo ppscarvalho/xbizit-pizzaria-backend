@@ -14,7 +14,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # Pastas de build e cache
-dist/
+#dist/
 build/
 .cache/
 .nyc_output/
