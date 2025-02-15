@@ -1,7 +1,7 @@
 # Keep environment variables out of version control
 .env
 
-tmp/
+tmp
 
 # Dependências do Node.js
 node_modules/
