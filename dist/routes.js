@@ -1,11 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
-const multer_1 = __importDefault(require("multer"));
 // Users
 const CreateUserController_1 = require("./controllers/user/CreateUserController");
 const AuthUserController_1 = require("./controllers/user/AuthUserController");
@@ -17,7 +13,6 @@ const UpdateCategoryController_1 = require("./controllers/category/UpdateCategor
 // Products
 const CreateProductController_1 = require("./controllers/product/CreateProductController");
 const ListProductController_1 = require("./controllers/product/ListProductController");
-const UpdateProductController_1 = require("./controllers/product/UpdateProductController");
 const FindByIdProductController_1 = require("./controllers/product/FindByIdProductController");
 const ListByCategoryProductController_1 = require("./controllers/product/ListByCategoryProductController");
 // Orders and Items
@@ -33,10 +28,8 @@ const SendOrderController_1 = require("./controllers/order/SendOrderController")
 const FinishOrderController_1 = require("./controllers/order/FinishOrderController");
 // Middlewares
 const isAuthenticated_1 = require("./middlewares/isAuthenticated");
-const multer_2 = __importDefault(require("./config/multer"));
 const router = (0, express_1.Router)();
 exports.router = router;
-const upload = (0, multer_1.default)(multer_2.default.upload('./tmp'));
 //-- ROTAS USER --
 router.post('/users', new CreateUserController_1.CreateUserController().handle);
 router.post('/session', new AuthUserController_1.AuthUserController().handle);
@@ -48,7 +41,7 @@ router.put('/categories/:id', isAuthenticated_1.isAuthenticated, new UpdateCateg
 //-- ROTAS PRODUTO --
 //router.post('/products', isAuthenticated, upload.single('file'), new CreateProductController().handle)
 router.post('/products', isAuthenticated_1.isAuthenticated, new CreateProductController_1.CreateProductController().handle);
-router.put('/products/:id', isAuthenticated_1.isAuthenticated, upload.single('file'), new UpdateProductController_1.UpdateProductController().handle);
+//router.put('/products/:id', isAuthenticated, upload.single('file'), new UpdateProductController().handle)
 router.get('/products', isAuthenticated_1.isAuthenticated, new ListProductController_1.ListProductController().handle);
 router.get('/products/:id', isAuthenticated_1.isAuthenticated, new FindByIdProductController_1.FindByIdProductController().handle);
 router.get('/categories/:categoryId/products', isAuthenticated_1.isAuthenticated, new ListByCategoryProductController_1.ListByCategoryProductController().handle);

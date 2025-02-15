@@ -14,7 +14,7 @@ app.use(fileUpload({
 }));
 
 app.use(router);
-app.use('/files', express.static(path.join(__dirname, '..', 'tmp')));
+//app.use('/files', express.static(path.join(__dirname, '..', 'tmp')));
 
 //Middleware para verificar se o token está presente no header Authorization.
 //Middleware de erro global, para lidar com erros não tratados.

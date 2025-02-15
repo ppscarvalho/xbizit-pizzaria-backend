@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const cors_1 = __importDefault(require("cors"));
-const path_1 = __importDefault(require("path"));
 const routes_1 = require("./routes");
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const app = (0, express_1.default)();
@@ -16,7 +15,7 @@ app.use((0, express_fileupload_1.default)({
     limits: { fileSize: 50 * 1024 * 1024 } //N máximo 50mb
 }));
 app.use(routes_1.router);
-app.use('/files', express_1.default.static(path_1.default.join(__dirname, '..', 'tmp')));
+//app.use('/files', express.static(path.join(__dirname, '..', 'tmp')));
 //Middleware para verificar se o token está presente no header Authorization.
 //Middleware de erro global, para lidar com erros não tratados.
 app.use((err, req, res, next) => {
