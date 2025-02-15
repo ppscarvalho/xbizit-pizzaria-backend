@@ -35,10 +35,8 @@ import { FinishOrderController } from './controllers/order/FinishOrderController
 
 // Middlewares
 import { isAuthenticated } from './middlewares/isAuthenticated'
-import uploadConfig from './config/multer'
 
 const router = Router();
-const upload = multer(uploadConfig.upload('./tmp'));
 
 //-- ROTAS USER --
 router.post('/users', new CreateUserController().handle)
@@ -54,11 +52,8 @@ router.put('/categories/:id', isAuthenticated, new UpdateCategoryController().ha
 //router.post('/products', isAuthenticated, upload.single('file'), new CreateProductController().handle)
 router.post('/products', isAuthenticated, new CreateProductController().handle)
 
-router.put('/products/:id', isAuthenticated, upload.single('file'), new UpdateProductController().handle)
+//router.put('/products/:id', isAuthenticated, upload.single('file'), new UpdateProductController().handle)
 router.get('/products', isAuthenticated, new ListProductController().handle)
-
-
-
 
 router.get('/products/:id', isAuthenticated, new FindByIdProductController().handle)
 router.get('/categories/:categoryId/products', isAuthenticated, new ListByCategoryProductController().handle)
